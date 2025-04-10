@@ -1,0 +1,1 @@
+enum CoreScreenType { login, main }
