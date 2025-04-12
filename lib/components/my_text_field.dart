@@ -6,10 +6,7 @@ import '../theme/colors/my_colors.dart';
 
 class MyTextField extends StatelessWidget {
   final TextField textField;
-  const MyTextField({
-    required this.textField,
-    super.key,
-  });
+  const MyTextField({required this.textField, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -21,9 +18,7 @@ class MyTextField extends StatelessWidget {
             children: [
               Text(
                 textField.decoration!.labelText!,
-                style: Get.theme.textTheme.bodyMedium?.copyWith(
-                  color: MyColors.onSurfaceMedium,
-                ),
+                style: Get.theme.textTheme.bodyMedium?.copyWith(color: MyColors.onPrimary),
               ),
               const Gap(10),
             ],
@@ -34,9 +29,7 @@ class MyTextField extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 8),
             child: Text(
               textField.decoration!.errorText!,
-              style: Get.theme.textTheme.bodySmall?.copyWith(
-                color: Get.theme.colorScheme.error,
-              ),
+              style: Get.theme.textTheme.bodySmall?.copyWith(color: Get.theme.colorScheme.error),
             ),
           ),
       ],

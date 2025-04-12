@@ -20,88 +20,98 @@ class LoginScreen extends StatelessWidget {
       init: LoginController(),
       builder: (controller) {
         return Scaffold(
+          backgroundColor: MyColors.primaryColor,
           body: SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Text('Login', style: Get.theme.textTheme.titleLarge),
-                  Column(
-                    children: [
-                      // email field
-                      MyTextField(
-                        textField: TextField(
-                          keyboardType: TextInputType.emailAddress,
-                          onChanged: controller.onEmailChanged,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            hintText: 'Enter your email or username',
-                            prefixIcon: Icon(PhosphorIcons.user()),
-                          ),
-                        ),
-                      ),
+              child: SingleChildScrollView(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    Gap(60),
+                    Text('Login', style: Get.theme.textTheme.titleLarge?.copyWith(color: MyColors.onPrimary)),
 
-                      const Gap(32),
-
-                      // password field
-                      ObxValue((isVisiblePassword) {
-                        return MyTextField(
+                    Gap(60),
+                    Column(
+                      children: [
+                        // email field
+                        MyTextField(
                           textField: TextField(
-                            obscureText: !isVisiblePassword.value,
-                            keyboardType: TextInputType.visiblePassword,
-                            onChanged: controller.onPasswordChanged,
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: controller.onEmailChanged,
                             decoration: InputDecoration(
-                              labelText: 'Password',
-                              hintText: 'Enter your password',
-                              prefixIcon: Icon(PhosphorIcons.password()),
-                              suffix: GestureDetector(
-                                onTap: controller.onVisiblePasswordChanged,
-                                child: Icon(isVisiblePassword.value ? PhosphorIcons.eyeClosed() : PhosphorIcons.eye()),
-                              ),
+                              labelText: 'Email',
+                              hintText: 'Enter your email or username',
+                              prefixIcon: Icon(PhosphorIcons.user()),
                             ),
                           ),
-                        );
-                      }, controller.state.isVisiblePassword),
+                        ),
 
-                      const Gap(16),
+                        const Gap(32),
 
-                      // password validation progress
-                      PasswordValidation(password: controller.state.password),
+                        // password field
+                        ObxValue((isVisiblePassword) {
+                          return MyTextField(
+                            textField: TextField(
+                              obscureText: !isVisiblePassword.value,
+                              keyboardType: TextInputType.visiblePassword,
+                              onChanged: controller.onPasswordChanged,
+                              decoration: InputDecoration(
+                                labelText: 'Password',
+                                hintText: 'Enter your password',
+                                prefixIcon: Icon(PhosphorIcons.password()),
+                                suffix: GestureDetector(
+                                  onTap: controller.onVisiblePasswordChanged,
+                                  child: Icon(
+                                    isVisiblePassword.value ? PhosphorIcons.eyeClosed() : PhosphorIcons.eye(),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          );
+                        }, controller.state.isVisiblePassword),
 
-                      const Gap(32),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      // login button
-                      ObxValue((isButtonActive) {
-                        return ElevatedButton(
-                          onPressed: !isButtonActive.value ? null : () => _login(controller),
-                          child: ObxValue((isLoading) {
-                            return Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                if (isLoading.value) ...[const MyLoadingView(color: MyColors.onPrimary), const Gap(12)],
-                                const Text('Login'),
-                              ],
-                            );
-                          }, controller.state.isLoading),
-                        );
-                      }, controller.state.isButtonActive),
+                        const Gap(16),
 
-                      const Gap(12),
+                        // password validation progress
+                        PasswordValidation(password: controller.state.password),
 
-                      // register button
-                      ElevatedButton(
-                        onPressed: () async {
-                          await Get.toNamed(RegisterRoutes.register);
-                        },
-                        child: const Text('Register'),
-                      ),
-                    ],
-                  ),
-                ],
+                        const Gap(32),
+                      ],
+                    ),
+
+                    Gap(60),
+                    Column(
+                      children: [
+                        // login button
+                        ObxValue((isButtonActive) {
+                          return ElevatedButton(
+                            onPressed: !isButtonActive.value ? null : () => _login(controller),
+                            child: ObxValue((isLoading) {
+                              return Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  if (isLoading.value) ...[const MyLoadingView(), const Gap(12)],
+                                  const Text('Login'),
+                                ],
+                              );
+                            }, controller.state.isLoading),
+                          );
+                        }, controller.state.isButtonActive),
+
+                        const Gap(12),
+
+                        // register button
+                        ElevatedButton(
+                          onPressed: () async {
+                            await Get.toNamed(RegisterRoutes.register);
+                          },
+                          child: const Text('Register'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
           ),

@@ -17,10 +17,10 @@ class MyButtonStyle {
 
   /// Elevated button style
   static ButtonStyle elevatedButtonStyle = ElevatedButton.styleFrom(
-    backgroundColor: MyColors.primaryColor,
-    foregroundColor: Colors.white,
-    disabledBackgroundColor: MyColors.disabledSurface,
-    disabledForegroundColor: MyColors.onDisabledSurface,
+    backgroundColor: Colors.white,
+    foregroundColor: MyColors.primaryColor,
+    disabledBackgroundColor: MyColors.primarySoft,
+    disabledForegroundColor: MyColors.primaryColor,
     elevation: 0,
     shape: _buttonShape,
     minimumSize: Size(double.infinity, buttonMinSize.height),
@@ -38,10 +38,7 @@ class MyButtonStyle {
   /// Outlined button style
   static ButtonStyle outlinedButtonStyle = OutlinedButton.styleFrom(
     shape: _buttonShape,
-    side: const BorderSide(
-      color: MyColors.strokePrimarySoft,
-      width: 1,
-    ),
+    side: const BorderSide(color: MyColors.strokePrimarySoft, width: 1),
     foregroundColor: MyColors.primaryColor,
     textStyle: MyTextStyle.baseTextStyle.labelLarge,
     padding: _buttonPadding,

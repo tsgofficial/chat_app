@@ -1,3 +1,5 @@
+import 'package:chat_app/pages/inbox/view/inbox_screen.dart';
+import 'package:chat_app/pages/profile/view/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
@@ -13,7 +15,7 @@ class MainScreen extends StatelessWidget {
       init: MainController(),
       builder: (controller) {
         return ObxValue((currentIndex) {
-          final List<Widget> screens = [Container(), Container(), Container()];
+          final List<Widget> screens = [InboxScreen(), ProfileScreen()];
 
           return Scaffold(
             body: screens[currentIndex.value],
@@ -21,8 +23,7 @@ class MainScreen extends StatelessWidget {
               currentIndex: controller.state.currentIndex.value,
               onTap: controller.onPageChanged,
               items: [
-                BottomNavigationBarItem(icon: Icon(PhosphorIcons.house()), label: 'Home'),
-                const BottomNavigationBarItem(icon: Icon(PhosphorIconsFill.plusCircle), label: 'New Post'),
+                BottomNavigationBarItem(icon: Icon(PhosphorIcons.chatCircle()), label: 'Messages'),
                 BottomNavigationBarItem(icon: Icon(PhosphorIcons.user()), label: 'Profile'),
               ],
             ),

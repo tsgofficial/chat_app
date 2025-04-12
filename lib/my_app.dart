@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/chat/suite/chat_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -10,6 +11,18 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(theme: MyTheme.instance.themeData, getPages: [...RegisterPages.pages], home: const CoreScreen());
+    return GestureDetector(
+      onTap: () {
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus && currentFocus.focusedChild != null) {
+          FocusManager.instance.primaryFocus?.unfocus();
+        }
+      },
+      child: GetMaterialApp(
+        theme: MyTheme.instance.themeData,
+        getPages: [...RegisterPages.pages, ...ChatPages.pages],
+        home: const CoreScreen(),
+      ),
+    );
   }
 }
