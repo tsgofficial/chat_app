@@ -13,7 +13,7 @@ class UserTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Get.toNamed('${ChatRoutes.chatList}/${user['id']}');
+        Get.toNamed('${ChatRoutes.chatList}/${user['id']}', arguments: {'user': user});
       },
       child: Container(
         padding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),

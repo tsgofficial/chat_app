@@ -1,9 +1,11 @@
+import 'package:chat_app/components/my_avatar.dart';
 import 'package:chat_app/components/my_loading_view.dart';
 import 'package:chat_app/pages/chat/logic/chat_controller.dart';
 import 'package:chat_app/theme/colors/my_colors.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
+import 'package:get/route_manager.dart';
+import 'package:get/state_manager.dart';
 import 'package:phosphor_flutter/phosphor_flutter.dart';
 
 import 'receiver_bubble.dart';
@@ -19,6 +21,19 @@ class ChatScreen extends StatelessWidget {
       builder: (controller) {
         return Scaffold(
           backgroundColor: MyColors.primarySoft,
+          appBar: AppBar(
+            leading: IconButton(onPressed: Get.back, icon: Icon(PhosphorIcons.arrowLeft())),
+            title: Row(
+              children: [
+                MyAvatar(color: MyColors.primaryColor),
+                Gap(12),
+                Text(
+                  '${controller.state.user['username'] ?? ''}',
+                  style: Get.theme.textTheme.labelLarge?.copyWith(color: MyColors.primaryColor),
+                ),
+              ],
+            ),
+          ),
           body: Column(
             children: [
               Expanded(

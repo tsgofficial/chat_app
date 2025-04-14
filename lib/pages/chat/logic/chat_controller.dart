@@ -10,6 +10,7 @@ class ChatController extends GetxController {
 
   @override
   onInit() {
+    state.user = Get.arguments['user'];
     state.chatterId = Get.parameters['chatterId'];
     state.currentUserId = UserFunctions.getUserId();
     super.onInit();

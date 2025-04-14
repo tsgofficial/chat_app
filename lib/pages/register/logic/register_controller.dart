@@ -30,7 +30,9 @@ class RegisterController extends GetxController {
 
   void updateButtonState() {
     state.isButtonActive.value =
-        MyUtils.isValidUsername(state.username) && MyUtils.isValidEmail(state.email) && MyUtils.isValidPassword(state.password.value);
+        MyUtils.isValidUsername(state.username) &&
+        MyUtils.isValidEmail(state.email) &&
+        MyUtils.isValidPassword(state.password.value);
   }
 
   Future<(bool, dynamic)> register() async {
