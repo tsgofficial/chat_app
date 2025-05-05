@@ -1,3 +1,4 @@
+import 'package:chat_app/pages/forgot_password/suite/forgot_password_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:get/get.dart';
@@ -75,7 +76,21 @@ class LoginScreen extends StatelessWidget {
 
                         // password validation progress
                         PasswordValidation(password: controller.state.password),
+                        Gap(12),
 
+                        // forgot password button
+                        Align(
+                          alignment: Alignment.centerRight,
+                          child: GestureDetector(
+                            onTap: () async {
+                              await Get.toNamed(ForgotPasswordRoutes.forgotPassword);
+                            },
+                            child: Text(
+                              'Forgot Password?',
+                              style: Get.theme.textTheme.bodyMedium?.copyWith(color: MyColors.onPrimary),
+                            ),
+                          ),
+                        ),
                         const Gap(32),
                       ],
                     ),

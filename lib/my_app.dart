@@ -1,4 +1,5 @@
 import 'package:chat_app/pages/chat/suite/chat_pages.dart';
+import 'package:chat_app/pages/forgot_password/suite/forgot_password_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
       },
       child: GetMaterialApp(
         theme: MyTheme.instance.themeData,
-        getPages: [...RegisterPages.pages, ...ChatPages.pages],
+        getPages: [...RegisterPages.pages, ...ChatPages.pages, ...ForgotPasswordPages.pages],
         home: const CoreScreen(),
       ),
     );

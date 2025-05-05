@@ -40,4 +40,12 @@ class UserFunctions {
 
     return session?.user.id;
   }
+
+  static Future<void> signOut() async {
+    await supabase.auth.signOut();
+  }
+
+  static Future<void> resetPassword({required String email}) async {
+    await supabase.auth.resetPasswordForEmail(email);
+  }
 }

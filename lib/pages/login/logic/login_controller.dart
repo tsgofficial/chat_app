@@ -25,7 +25,8 @@ class LoginController extends GetxController {
 
   void updateButtonState() {
     state.isButtonActive.value =
-        (MyUtils.isValidEmail(state.email) || MyUtils.isValidUsername(state.email)) && MyUtils.isValidPassword(state.password.value);
+        (MyUtils.isValidEmail(state.email) || MyUtils.isValidUsername(state.email)) &&
+        MyUtils.isValidPassword(state.password.value);
   }
 
   Future<(bool, dynamic)> login() async {
